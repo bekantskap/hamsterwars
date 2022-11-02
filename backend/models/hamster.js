@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
+const hamsterSchema = new mongoose.Schema({
   id: {
     required: true,
     type: Number,
@@ -39,4 +39,4 @@ const dataSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Data', dataSchema);
+module.exports = mongoose.model('Hamster', hamsterSchema);

@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background-color: #fef9ef;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  color: #0a100d;
+}
+
+.custom-img {
+  background-image: url(https://images.unsplash.com/photo-1646312023696-aa27ca49602a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80);
+}

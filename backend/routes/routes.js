@@ -1,3 +1,4 @@
+const { application } = require('express');
 const express = require('express');
 const Hamster = require('../models/hamster');
 const Match = require('../models/match');
@@ -160,10 +161,6 @@ router.get('/winners', async (req, res) => {
         };
         topFive.push(newObj);
       }
-
-      //   if (topFive.winnerId == d.winnerId) {
-      //   } else {
-      //   }
     });
     topFive.sort((a, b) => b.wins - a.wins);
     const slicedArray = topFive.slice(0, 5);
@@ -189,16 +186,73 @@ router.get('/losers', async (req, res) => {
         };
         topFive.push(newObj);
       }
-
-      //   if (topFive.winnerId == d.winnerId) {
-      //   } else {
-      //   }
     });
     topFive.sort((a, b) => b.losses - a.losses);
     const slicedArray = topFive.slice(0, 5);
     res.json(slicedArray);
   } catch (err) {
     res.status(404).json({ message: err.message });
+  }
+});
+
+router.get('/defeated/:hamsterId', async (req, res) => {
+  const defeated = [];
+  const filteredList = [];
+  const id = req.params.hamsterId;
+  try {
+    const data = await Match.find();
+    data.map(d => {
+      if (d.winnerId == id) {
+        defeated.push(d.loserId);
+      }
+    });
+    res.json(defeated);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+});
+
+router.get('/score/:challenger/:defender', async (req, res) => {
+  const challengerScores = { challengerWins: 0, defenderWins: 0 };
+  const challenger = req.params.challenger;
+  const defender = req.params.defender;
+
+  try {
+    const data = await Match.find();
+    data.map(d => {
+      if (d.winnerId == challenger && d.loserId == defender) {
+        challengerScores.challengerWins++;
+      }
+      if (d.winnerId == defender && d.loserId == challenger) {
+        challengerScores.defenderWins++;
+      }
+    });
+    res.json(challengerScores);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+});
+
+router.get('/fewmatches', async (req, res) => {
+  try {
+    const data = await Hamster.find();
+    data.sort((a, b) => a.games - b.games);
+    const slicedArray = data.slice(0, 5);
+    res.json(slicedArray);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get('/manymatches', async (req, res) => {
+  try {
+    const data = await Hamster.find();
+    const sorted = data.sort((a, b) => b.games - a.games);
+    console.log(sorted);
+    const slicedArray = data.slice(0, 5);
+    res.json(slicedArray);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
