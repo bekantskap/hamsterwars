@@ -1,16 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import store from '../redux/store';
+import hamster, { setHamster } from '../redux/hamster';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const dispatch = useDispatch();
+  const state = store.getState();
 
   const handleNav = () => {
     setNav(!nav);
   };
 
+  useEffect(() => {
+    fetchHamsters();
+  }, []);
+
+  const fetchHamsters = async () => {
+    const res = await fetch('http://localhost:4000/api/hamsters');
+    const data = await res.json();
+    dispatch(setHamster(data));
+  };
+
   return (
-    <nav className="bg-white fixed left-0 top-0 w-full z-10 ease-in duration-300">
+    <nav className="bg-white sticky left-0 top-0 w-full z-10 ease-in duration-300">
       <div className="max-w-[1240px] m-auto flex justify-between items-center p-4 text-black">
         <h2 className="text-4xl">
           <Link href="/">HAMSTER WARS</Link>

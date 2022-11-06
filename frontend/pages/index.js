@@ -2,8 +2,17 @@ import Image from 'next/image';
 import Hero from '../components/Hero';
 import styles from '../styles/Home.module.css';
 import Head from 'next/head';
+import { useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    fetchJson();
+  }, []);
+
+  const fetchJson = async () => {
+    const data = await fetch('http://localhost:4000/api/hamstersjson');
+    console.log(data);
+  };
   return (
     <div>
       <Head>

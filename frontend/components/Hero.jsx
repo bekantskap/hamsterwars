@@ -6,11 +6,11 @@ const Hero = () => {
   return (
     <main className="flex items-center justify-evenly mb-12 custom-img bg-fixed bg-cover bg-center h-screen">
       <section className="w-2/4 h-2/5 flex flex-col items-center justify-end">
-        <button class=" bg-yellow-500 hover:bg-transparent text-white font-semibold hover:text-yellow-700 py-2 px-4 border border-transparent hover:border-yellow-500 rounded">
+        <button className=" bg-yellow-500 hover:bg-transparent text-white font-semibold hover:text-yellow-700 py-2 px-4 border border-transparent hover:border-yellow-500 rounded">
           <Link href="/battle">BATTLE</Link>
         </button>
-        <button class="mt-10 bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white py-2 px-4 border border-yellow-500 hover:border-transparent rounded">
-          GALLERY
+        <button className="mt-10 bg-transparent hover:bg-yellow-500 text-yellow-700 font-semibold hover:text-white py-2 px-4 border border-yellow-500 hover:border-transparent rounded">
+          <Link href="/gallery">GALLERY</Link>
         </button>
       </section>
       <section className=" mt-20 w-96 h-screen bg-black/70 flex flex-col items-center justify-center text-center">

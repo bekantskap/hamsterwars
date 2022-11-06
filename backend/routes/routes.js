@@ -1,8 +1,20 @@
-const { application } = require('express');
 const express = require('express');
 const Hamster = require('../models/hamster');
 const Match = require('../models/match');
+const fs = require('fs');
 const router = express.Router();
+const jsonData = JSON.parse(fs.readFileSync('./files/hamsters.json', 'utf-8'));
+
+// GET JSON DATA
+router.get('/hamstersjson', async (req, res) => {
+  try {
+    await Hamster.deleteMany();
+    await Hamster.create(jsonData);
+    console.log('data successfully imported');
+  } catch (error) {
+    console.log('error', error);
+  }
+});
 
 // POST
 router.post('/hamsters', async (req, res) => {
@@ -80,7 +92,8 @@ router.delete('/hamsters/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const data = await Hamster.findOneAndDelete({ id: id });
-    res.send(`Document with ${data.name} has been deleted..`);
+    console.log('tryng to delete ' + data.name);
+    res.send(`Document with name: ${data.name} has been deleted..`);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
