@@ -110,6 +110,8 @@ router.get('/matches', async (req, res) => {
   }
 });
 
+// GET MATCHES BY ID
+
 router.get('/matches/:id', async (req, res) => {
   try {
     const id = req.params.id;
@@ -120,9 +122,10 @@ router.get('/matches/:id', async (req, res) => {
   }
 });
 
+// POST MATCH
+
 router.post('/matches', async (req, res) => {
   const data = new Match({
-    id: req.body.id,
     winnerId: req.body.winnerId,
     loserId: req.body.loserId,
   });
@@ -133,6 +136,8 @@ router.post('/matches', async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
+
+// DELETE MATCH
 
 router.delete('/matches/:id', async (req, res) => {
   try {

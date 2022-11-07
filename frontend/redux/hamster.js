@@ -21,6 +21,13 @@ export const hamsterSlice = createSlice({
         });
       });
     },
+    updateHamster: (state, action) => {
+      const { id, wins, losses, games } = action.payload;
+      const hamster = state.find(h => h.id === id);
+      hamster.wins = wins;
+      hamster.losses = losses;
+      hamster.games = games;
+    },
     resetHamster: state => {
       state.splice(0, state.length);
     },
@@ -31,6 +38,7 @@ export const hamsterSlice = createSlice({
   },
 });
 
-export const { setHamster, resetHamster, deleteHamster } = hamsterSlice.actions;
+export const { setHamster, resetHamster, deleteHamster, updateHamster } =
+  hamsterSlice.actions;
 
 export default hamsterSlice.reducer;
