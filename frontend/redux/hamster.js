@@ -25,7 +25,7 @@ export const hamsterSlice = createSlice({
       const { id, wins, losses, games } = action.payload;
       const hamster = state.find(h => h.id === id);
       hamster.wins = wins;
-      hamster.losses = losses;
+      hamster.defeats = losses;
       hamster.games = games;
     },
     resetHamster: state => {

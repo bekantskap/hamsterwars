@@ -33,7 +33,7 @@ const BattleImg = props => {
 
   return (
     <Fragment>
-      <div className="z-11 w-[400px] h-[700px] border-2 border-black bg-white rounded-2xl overflow-hidden flex flex-col justify-between">
+      <div className="z-11 w-[350px] h-[600px] m-10 border-2 border-black bg-white rounded-2xl overflow-hidden flex flex-col justify-between">
         <div
           style={{
             width: '100%',
@@ -48,11 +48,11 @@ const BattleImg = props => {
           />
         </div>
         <div className="flex flex-col items-center ">
-          <h3 className="text-4xl mb-8 font-bold uppercase">
+          <h3 className="text-4xl mb-4 font-bold uppercase">
             {props.props.name}
           </h3>
           <div className="text-center">
-            <FcLike size={22} />
+            <FcLike size={22} className="m-auto mb-4" />
             <p className=" text-2xl uppercase">{props.props.favFood}</p>
             <p className=" text-2xl uppercase">{props.props.loves}</p>
           </div>
@@ -61,12 +61,12 @@ const BattleImg = props => {
           {renderState ? (
             <>
               <div className="h-full w-1/2 bg-green-500 flex flex-col justify-center items-center">
-                <h3 className="text-2xl">WINS</h3>
+                <h3 className="text-2xl">VINSTER</h3>
                 <h3 className="text-2xl">{props.props.wins}</h3>
               </div>
               <div className="h-full w-1/2 bg-red-500 flex flex-col justify-center items-center">
-                <h3 className="text-2xl">LOSSES</h3>
-                <h3 className="text-2xl">{props.props.losses}</h3>
+                <h3 className="text-2xl">FÖRLUSTER</h3>
+                <h3 className="text-2xl">{props.props.defeats}</h3>
               </div>
             </>
           ) : (
@@ -74,7 +74,7 @@ const BattleImg = props => {
               onClick={() => voteHandler(props.props.id)}
               className="h-full w-full bg-green-700 flex items-center justify-center hover:cursor-pointer hover:bg-green-500 transition-colors duration-300"
             >
-              <h3 className="text-5xl">VOTE</h3>
+              <h3 className="text-5xl">RÖSTA</h3>
             </div>
           )}
         </div>

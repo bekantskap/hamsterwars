@@ -45,9 +45,11 @@ const Gridimg = props => {
       </h3>
       <div className={isHovering ? 'contents ' : 'hidden'}>
         <div className="absolute top-0 bottom-0 left-0 right-0  bg-black opacity-90 flex flex-col items-center justify-center">
-          <p className="text-white text-lg">Loves: {props.props.loves}</p>
-          <p className="text-white text-lg">Age: {props.props.age}</p>
-          <p className="text-white text-lg">Fave food: {props.props.favFood}</p>
+          <p className="text-white text-lg">Älskar att {props.props.loves}</p>
+          <p className="text-white text-lg">Ålder: {props.props.age}</p>
+          <p className="text-white text-lg">
+            Favoritmat: {props.props.favFood}
+          </p>
           <div className="m-2 text-center flex flex-col items-center justify-center">
             <div className="mb-2 h-8 w-32 bg-green-500 rounded">
               <p className="text-lg">Wins: {props.props.wins}</p>
@@ -59,9 +61,9 @@ const Gridimg = props => {
           <button
             onClick={() => removeHandler(props.props)}
             type="button"
-            class="ml-2 absolute bottom-5 left-3/6 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            className="ml-2 absolute bottom-5 left-3/6 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
           >
-            Remove Hamster
+            Ta Bort Hamster
           </button>
         </div>
       </div>

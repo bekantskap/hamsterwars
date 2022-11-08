@@ -5,12 +5,15 @@ import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 import Image from 'next/image';
 import { useSelector, useDispatch } from 'react-redux';
 import Gridimg from '../components/Gridimg';
+import Form from '../components/Form';
 
 const gallery = () => {
-  const hamsters = useSelector(state => state.hamster);
+  const State = useSelector(state => state.hamster);
+  const hamsterState = useSelector(state => state.hamster);
+  const matchState = useSelector(state => state.match);
 
   const [current, setCurrent] = useState(0);
-  const length = hamsters.length;
+  const length = hamsterState.length;
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -19,7 +22,7 @@ const gallery = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
-  if (!Array.isArray(hamsters) || hamsters.length <= 0) {
+  if (!Array.isArray(hamsterState) || hamsterState.length <= 0) {
     return null;
   }
 
@@ -27,17 +30,15 @@ const gallery = () => {
     <div className="w-screen h-fit">
       <h1 className="text-5xl font-bold text-center p-4 ">Gallery</h1>
       <main className="w-5/6 m-auto grid sm:grid-cols-2 lg:grid-cols-4">
-        {hamsters.map((hamster, index) => {
+        {hamsterState.map((hamster, index) => {
           return <Gridimg props={hamster} key={index} />;
         })}
       </main>
-      <form className="">
-        <input></input>
-      </form>
+      <Form />
 
       <div id="gallery" className="max-w-[1240px] mx-auto">
         <div className="relative flex justify-center p-4">
-          {hamsters.map((hamster, index) => {
+          {hamsterState.map((hamster, index) => {
             return (
               <div
                 key={index}

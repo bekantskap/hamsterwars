@@ -18,29 +18,28 @@ const Navbar = () => {
 
   useEffect(() => {
     fetchHamsters();
-    getMatchInfo();
-  }, [hamsterState]);
+  }, []);
 
   const fetchHamsters = async () => {
     const res = await fetch('http://localhost:4000/api/hamsters');
     const data = await res.json();
     dispatch(setHamster(data));
+    getMatchInfo();
   };
 
   const getMatchInfo = async () => {
+    console.log('entering match info');
     const res = await fetch('http://localhost:4000/api/matches');
     const data = await res.json();
-    dispatch(setMatches(data));
-    matchState.map(m => {
-      console.log(m);
-    });
-    updateHamsterInfo();
+    if (data) {
+      dispatch(setMatches(data));
+      updateHamsterInfo();
+    }
   };
-
-  // DENNA LIGGER EN FÖRE RENDERINGEN FIXA DETTA
 
   const updateHamsterInfo = () => {
     hamsterState.map(h => {
+      console.log('mapping hamster');
       const newObj = {
         id: 0,
         wins: 0,
@@ -49,14 +48,11 @@ const Navbar = () => {
       };
       newObj.id = h.id;
       matchState.map(m => {
-        console.log('entering');
         console.log(m.winnerId);
         if (h.id === m.winnerId) {
-          console.log('success');
           newObj.wins++;
         }
         if (h.id == m.loserId) {
-          console.log('success');
           newObj.losses++;
         }
       });

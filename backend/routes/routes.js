@@ -18,8 +18,13 @@ router.get('/hamstersjson', async (req, res) => {
 
 // POST
 router.post('/hamsters', async (req, res) => {
+  const idExists = await Hamster.find({ id: req.body.id });
+  let id = req.body.id;
+  if (idExists) {
+    id++;
+  }
   const data = new Hamster({
-    id: req.body.id,
+    id: id,
     name: req.body.name,
     age: req.body.age,
     favFood: req.body.favFood,
