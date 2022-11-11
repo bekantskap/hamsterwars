@@ -6,16 +6,19 @@ export const matchSlice = createSlice({
 
   reducers: {
     setMatches: (state, action) => {
+      console.log(action);
       state.splice(0, state.length);
       action.payload.map(m => {
         state.push({
-          id: m.id,
+          id: m._id,
           winnerId: m.winnerId,
           loserId: m.loserId,
         });
       });
     },
-
+    getAllmatches: state => {
+      return state;
+    },
     resetMatches: state => {
       state.splice(0, state.length);
     },

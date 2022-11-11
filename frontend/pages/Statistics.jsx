@@ -11,14 +11,12 @@ const statistics = () => {
   const hamsterState = useSelector(state => state.hamster);
   const matchState = useSelector(state => state.match);
   const dispatch = useDispatch();
+  console.log(matchState);
 
   const getMatchInfo = async () => {
     const res = await fetch('http://localhost:4000/api/matches');
     const data = await res.json();
     dispatch(setMatches(data));
-    matchState.map(m => {
-      console.log(m);
-    });
     updateHamsterInfo();
   };
 
@@ -30,8 +28,8 @@ const statistics = () => {
       hamsterState.map(h => {
         if (m.winnerId == h.id) {
           arr.push(h);
-          setTopFive(arr);
         }
+        setTopFive(arr);
       });
     });
     getLowScores();
@@ -41,17 +39,21 @@ const statistics = () => {
     const res = await fetch('http://localhost:4000/api/losers');
     const data = await res.json();
     const arr = [];
+    console.log(data);
     data.map(m => {
       hamsterState.map(h => {
         if (m.loserId == h.id) {
           arr.push(h);
-          setBottomFive(arr);
         }
+        setBottomFive(arr);
       });
     });
   };
 
   const updateHamsterInfo = () => {
+    matchState.map(m => {
+      console.log('hej');
+    });
     hamsterState.map(h => {
       const newObj = {
         id: 0,
@@ -60,12 +62,9 @@ const statistics = () => {
         games: 0,
       };
       newObj.id = h.id;
-      console.log('entered');
       matchState.map(m => {
-        console.log('entering');
-        console.log(m.winnerId);
+        console.log('entering MATCHSTATE');
         if (h.id === m.winnerId) {
-          console.log('logging win');
           newObj.wins++;
         }
         if (h.id == m.loserId) {
@@ -83,8 +82,12 @@ const statistics = () => {
   }, [hamsterState]);
 
   return (
-    <main className="h-screen w-screen ">
-      <h2 className="text-center text-4xl font-bold">Highscore</h2>
+    <main className="h-screen w-screen mt-20">
+      <div className="flex m-auto w-3/6 justify-evenly">
+        <h2 className="text-4xl font-bold">Bästa 5</h2>
+        <h2 className="text-4xl font-bold">Sämsta 5</h2>
+      </div>
+
       <div className="h-4/5 flex justify-center items-center ">
         <section className="w-1/6 h-full  flex flex-col items-center">
           {topFive.map((t, index) => {

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Hero = () => {
   return (
-    <main className="flex items-center justify-evenly mb-12 custom-img bg-fixed bg-cover bg-center h-screen">
+    <main className="flex items-center justify-evenly mb-12 custom-img bg-fixed bg-cover bg-center h-full">
       <section className="w-2/4 h-2/5 flex flex-col items-center justify-end">
         <button className=" bg-yellow-500 hover:bg-transparent text-white font-semibold hover:text-yellow-700 py-2 px-4 border border-transparent hover:border-yellow-500 rounded">
           <Link href="/battle">BATTLE</Link>

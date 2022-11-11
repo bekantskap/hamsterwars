@@ -27,7 +27,7 @@ const gallery = () => {
   }
 
   return (
-    <div className="w-screen h-fit">
+    <div className="w-screen h-fit mt-20">
       <h1 className="text-5xl font-bold text-center p-4 ">Gallery</h1>
       <main className="w-5/6 m-auto grid sm:grid-cols-2 lg:grid-cols-4">
         {hamsterState.map((hamster, index) => {
@@ -37,6 +37,7 @@ const gallery = () => {
       <Form />
 
       <div id="gallery" className="max-w-[1240px] mx-auto">
+        <h2 className="text-4xl font-bold text-center">HALL OF FAME</h2>
         <div className="relative flex justify-center p-4">
           {hamsterState.map((hamster, index) => {
             return (

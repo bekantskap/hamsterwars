@@ -222,6 +222,7 @@ router.get('/defeated/:hamsterId', async (req, res) => {
   const defeated = [];
   const filteredList = [];
   const id = req.params.hamsterId;
+  console.log(id);
   try {
     const data = await Match.find();
     data.map(d => {

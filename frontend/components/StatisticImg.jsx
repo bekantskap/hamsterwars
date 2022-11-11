@@ -23,9 +23,9 @@ const StatisticImg = props => {
       <div className="relative h-full flex flex-col justify-center items-center">
         <h3 className="text-4xl mb-4 font-bold">{props.props.name}</h3>
         {wins ? (
-          <h3 className="text-2xl">wins: {props.props.wins}</h3>
+          <h3 className="text-2xl">Vinster: {props.props.wins}</h3>
         ) : (
-          <h3 className="text-2xl">losses: {props.props.defeats}</h3>
+          <h3 className="text-2xl">Förluster: {props.props.defeats}</h3>
         )}
       </div>
     </div>
