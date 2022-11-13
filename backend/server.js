@@ -6,7 +6,7 @@ const routes = require('./routes/routes');
 const Hamster = require('./models/hamster');
 const cors = require('cors');
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 const mongoUri = process.env.MONGO_URI;
 
 const app = express();

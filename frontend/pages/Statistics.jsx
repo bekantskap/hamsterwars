@@ -50,33 +50,6 @@ const statistics = () => {
     });
   };
 
-  // const updateHamsterInfo = () => {
-  //   matchState.map(m => {
-  //     console.log('hej');
-  //   });
-  //   hamsterState.map(h => {
-  //     const newObj = {
-  //       id: 0,
-  //       wins: 0,
-  //       losses: 0,
-  //       games: 0,
-  //     };
-  //     newObj.id = h.id;
-  //     matchState.map(m => {
-  //       console.log('entering MATCHSTATE');
-  //       if (h.id === m.winnerId) {
-  //         newObj.wins++;
-  //       }
-  //       if (h.id == m.loserId) {
-  //         newObj.losses++;
-  //       }
-  //     });
-  //     newObj.games = newObj.wins + newObj.losses;
-  //     dispatch(updateHamster(newObj));
-  //   });
-  //   getHighScores();
-  // };
-
   useEffect(() => {
     getHighScores();
   }, [hamsterState]);
