@@ -13,12 +13,12 @@ const statistics = () => {
   const dispatch = useDispatch();
   console.log(matchState);
 
-  const getMatchInfo = async () => {
-    const res = await fetch('http://localhost:4000/api/matches');
-    const data = await res.json();
-    dispatch(setMatches(data));
-    updateHamsterInfo();
-  };
+  // const getMatchInfo = async () => {
+  //   const res = await fetch('http://localhost:4000/api/matches');
+  //   const data = await res.json();
+  //   dispatch(setMatches(data));
+  //   updateHamsterInfo();
+  // };
 
   const getHighScores = async () => {
     const res = await fetch('http://localhost:4000/api/winners');
@@ -50,35 +50,35 @@ const statistics = () => {
     });
   };
 
-  const updateHamsterInfo = () => {
-    matchState.map(m => {
-      console.log('hej');
-    });
-    hamsterState.map(h => {
-      const newObj = {
-        id: 0,
-        wins: 0,
-        losses: 0,
-        games: 0,
-      };
-      newObj.id = h.id;
-      matchState.map(m => {
-        console.log('entering MATCHSTATE');
-        if (h.id === m.winnerId) {
-          newObj.wins++;
-        }
-        if (h.id == m.loserId) {
-          newObj.losses++;
-        }
-      });
-      newObj.games = newObj.wins + newObj.losses;
-      dispatch(updateHamster(newObj));
-    });
-    getHighScores();
-  };
+  // const updateHamsterInfo = () => {
+  //   matchState.map(m => {
+  //     console.log('hej');
+  //   });
+  //   hamsterState.map(h => {
+  //     const newObj = {
+  //       id: 0,
+  //       wins: 0,
+  //       losses: 0,
+  //       games: 0,
+  //     };
+  //     newObj.id = h.id;
+  //     matchState.map(m => {
+  //       console.log('entering MATCHSTATE');
+  //       if (h.id === m.winnerId) {
+  //         newObj.wins++;
+  //       }
+  //       if (h.id == m.loserId) {
+  //         newObj.losses++;
+  //       }
+  //     });
+  //     newObj.games = newObj.wins + newObj.losses;
+  //     dispatch(updateHamster(newObj));
+  //   });
+  //   getHighScores();
+  // };
 
   useEffect(() => {
-    getMatchInfo();
+    getHighScores();
   }, [hamsterState]);
 
   return (

@@ -24,47 +24,47 @@ const Navbar = () => {
     const res = await fetch('http://localhost:4000/api/hamsters');
     const data = await res.json();
     dispatch(setHamster(data));
-    // getMatchInfo();
+    getMatchInfo();
   };
 
-  // const getMatchInfo = async () => {
-  //   console.log('entering match info');
-  //   const res = await fetch('http://localhost:4000/api/matches');
-  //   const data = await res.json();
-  //   if (data) {
-  //     dispatch(setMatches(data));
-  //     updateHamsterInfo();
-  //   }
-  // };
+  const getMatchInfo = async () => {
+    const res = await fetch('http://localhost:4000/api/matches');
+    const data = await res.json();
+    if (data) {
+      dispatch(setMatches(data));
+    }
+  };
 
-  // const updateHamsterInfo = () => {
-  //   hamsterState.map(h => {
-  //     console.log('mapping hamster');
-  //     const newObj = {
-  //       id: 0,
-  //       wins: 0,
-  //       losses: 0,
-  //       games: 0,
-  //     };
-  //     newObj.id = h.id;
-  //     matchState.map(m => {
-  //       console.log(m.winnerId);
-  //       if (h.id === m.winnerId) {
-  //         newObj.wins++;
-  //       }
-  //       if (h.id == m.loserId) {
-  //         newObj.losses++;
-  //       }
-  //     });
-  //     newObj.games = newObj.wins + newObj.losses;
-  //     dispatch(updateHamster(newObj));
-  //   });
-  // };
+  const updateHamsterInfo = match => {
+    hamsterState.map(h => {
+      const newObj = {
+        id: 0,
+        wins: 0,
+        losses: 0,
+        games: 0,
+      };
+      newObj.id = h.id;
+      match.map(m => {
+        if (h.id === m.winnerId) {
+          newObj.wins++;
+        }
+        if (h.id == m.loserId) {
+          newObj.losses++;
+        }
+      });
+      newObj.games = newObj.wins + newObj.losses;
+      dispatch(updateHamster(newObj));
+    });
+  };
+
+  useEffect(() => {
+    updateHamsterInfo(matchState);
+  }, [matchState]);
 
   return (
     <nav className="bg-white fixed left-0 top-0 w-full z-10 ease-in duration-300">
       <div className="max-w-[1240px] m-auto flex justify-between items-center p-4 text-black">
-        <h2 className="text-4xl">
+        <h2 className="text-4xl ">
           <Link href="/">HAMSTER WARS</Link>
         </h2>
 

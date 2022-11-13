@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -81,18 +82,48 @@ const history = () => {
     getMatchInfo();
   }, []);
 
+  useEffect(() => {
+    findAndSortDuels(matchState);
+  }, [matchState]);
+
   return (
     <div className="w-screen h-screen text-center mt-20">
-      <button onClick={() => findAndSortDuels(matchState)}>tryck</button>
-      {duels.map(d => {
-        return (
-          <div>
-            <div>{d.winnerName}</div>
-            <p>vs. </p>
-            <div>{d.loserName}</div>
-          </div>
-        );
-      })}
+      <main className="grid grid-cols-4 w-5/6 m-auto">
+        {duels.map(d => {
+          return (
+            <div className="flex items-center border-2 m-2 border-black">
+              <div className="h-[150px] w-[150px] m-1 relative ">
+                <Image
+                  src={`/assets/img/${d.winnerImg}`}
+                  alt="hamster"
+                  width={500}
+                  height={500}
+                  style={{ width: '100%', height: '100%' }}
+                  priority
+                />
+                <div className="absolute top-0 bottom-0 left-0 right-0 bg-green-600 opacity-40"></div>
+                <h3 className="absolute bottom-2 left-4 text-2xl font-bold text-white">
+                  {d.winnerName}
+                </h3>
+              </div>
+              <div className="h-[150px] w-[150px] m-1 relative">
+                <Image
+                  src={`/assets/img/${d.loserImg}`}
+                  alt="hamster"
+                  width={500}
+                  height={500}
+                  style={{ width: '100%', height: '100%' }}
+                  priority
+                />
+                <div className="absolute top-0 bottom-0 left-0 right-0 bg-red-600 opacity-40"></div>
+                <h3 className="absolute bottom-2 left-4 text-2xl font-bold text-white">
+                  {d.loserName}
+                </h3>
+              </div>
+            </div>
+          );
+        })}
+      </main>
     </div>
   );
 };

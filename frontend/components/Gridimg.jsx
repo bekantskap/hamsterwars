@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteHamster } from '../redux/hamster';
@@ -8,7 +9,6 @@ const Gridimg = props => {
   const [isHovering, setIsHovering] = useState(false);
   const [modal, setModal] = useState(false);
   const [defeated, setDefeated] = useState([]);
-  const [defId, setDefId] = useState([]);
   const dispatch = useDispatch();
   const hamsterState = useSelector(state => state.hamster);
 
@@ -32,19 +32,18 @@ const Gridimg = props => {
   const getWonMatches = async id => {
     const res = await fetch(`http://localhost:4000/api/defeated/${id}`);
     const data = await res.json();
-    setDefId(data);
-    console.log(defId);
+    setWonMatches(data);
+  };
+
+  const setWonMatches = data => {
     const newArr = [];
-    defId.map(d => {
-      console.log('hej');
+    data.map(d => {
       hamsterState.map(h => {
         if (d === h.id) {
-          console.log(h);
           return newArr.push(h);
         }
       });
       setDefeated(newArr);
-      console.log(defeated);
     });
     modalHandler();
   };
@@ -116,13 +115,13 @@ const Gridimg = props => {
         />
         {defeated.map(d => {
           return (
-            <div className="w-1/5 h-1/5 flex items-center justify-center m-10">
+            <div className="w-4/5 h-[400px] flex items-center justify-center m-10">
               <Image
                 src={`/assets/img/${props.props.imgName}`}
                 alt="hamster"
                 width={500}
                 height={500}
-                style={{ width: '100%', height: '100%' }}
+                style={{ width: '40%', height: '80%' }}
                 priority
               />
               <p className="text-white text-2xl">Versus</p>
@@ -131,8 +130,8 @@ const Gridimg = props => {
                 alt="hamster"
                 width={500}
                 height={500}
-                style={{ width: '100%', height: '100%' }}
-                className="grayscale"
+                style={{ width: '40%', height: '80%' }}
+                className="grayscale "
                 priority
               />
             </div>

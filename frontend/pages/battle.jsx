@@ -20,45 +20,6 @@ const battle = () => {
     setChallengers(sliced);
     dispatch(setIds(sliced[0].id));
     dispatch(setIds(sliced[1].id));
-    getMatchInfo();
-  };
-
-  const getMatchInfo = async () => {
-    const res = await fetch('http://localhost:4000/api/matches');
-    const data = await res.json();
-    dispatch(setMatches(data));
-    matchState.map(m => {
-      console.log(m);
-    });
-    updateHamsterInfo();
-  };
-
-  // DENNA LIGGER EN FÖRE RENDERINGEN FIXA DETTA
-
-  const updateHamsterInfo = () => {
-    hamsters.map(h => {
-      const newObj = {
-        id: 0,
-        wins: 0,
-        losses: 0,
-        games: 0,
-      };
-      newObj.id = h.id;
-      matchState.map(m => {
-        console.log('entering');
-        console.log(m.winnerId);
-        if (h.id === m.winnerId) {
-          console.log('success');
-          newObj.wins++;
-        }
-        if (h.id == m.loserId) {
-          console.log('success');
-          newObj.losses++;
-        }
-      });
-      newObj.games = newObj.wins + newObj.losses;
-      dispatch(updateHamster(newObj));
-    });
   };
 
   return (

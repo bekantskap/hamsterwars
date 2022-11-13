@@ -6,7 +6,6 @@ export const matchSlice = createSlice({
 
   reducers: {
     setMatches: (state, action) => {
-      console.log(action);
       state.splice(0, state.length);
       action.payload.map(m => {
         state.push({
