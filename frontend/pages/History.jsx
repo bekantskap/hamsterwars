@@ -99,7 +99,7 @@ const history = () => {
                   width={500}
                   height={500}
                   style={{ width: '100%', height: '100%' }}
-                  priority
+                  priority={true}
                 />
                 <div className="absolute top-0 bottom-0 left-0 right-0 bg-green-600 opacity-40"></div>
                 <h3 className="absolute bottom-2 left-4 text-2xl font-bold text-white">
@@ -113,7 +113,7 @@ const history = () => {
                   width={500}
                   height={500}
                   style={{ width: '100%', height: '100%' }}
-                  priority
+                  priority={true}
                 />
                 <div className="absolute top-0 bottom-0 left-0 right-0 bg-red-600 opacity-40"></div>
                 <h3 className="absolute bottom-2 left-4 text-2xl font-bold text-white">

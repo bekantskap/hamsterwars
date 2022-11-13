@@ -45,6 +45,7 @@ const BattleImg = props => {
             fill
             src={`/assets/img/${props.props.imgName}`}
             alt="hamster"
+            priority={true}
           />
         </div>
         <div className="flex flex-col items-center ">

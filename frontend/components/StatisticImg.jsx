@@ -19,6 +19,7 @@ const StatisticImg = props => {
         alt="hamster"
         className="opacity-20"
         fill
+        priority={true}
       ></Image>
       <div className="relative h-full flex flex-col justify-center items-center">
         <h3 className="text-4xl mb-4 font-bold">{props.props.name}</h3>

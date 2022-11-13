@@ -65,7 +65,7 @@ const Gridimg = props => {
           width={500}
           height={500}
           style={{ width: '100%', height: '100%' }}
-          priority
+          priority={true}
         />
         <div className="absolute top-0 bottom-0 left-0 right-0 bg-black opacity-40"></div>
         <h3 className="absolute bottom-2 left-4 text-2xl font-bold text-white">
@@ -122,7 +122,7 @@ const Gridimg = props => {
                 width={500}
                 height={500}
                 style={{ width: '40%', height: '80%' }}
-                priority
+                priority={true}
               />
               <p className="text-white text-2xl">Versus</p>
               <Image
@@ -132,7 +132,7 @@ const Gridimg = props => {
                 height={500}
                 style={{ width: '40%', height: '80%' }}
                 className="grayscale "
-                priority
+                priority={true}
               />
             </div>
           );
