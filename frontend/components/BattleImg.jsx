@@ -19,7 +19,7 @@ const BattleImg = props => {
     const loser = arr[0];
     const winner = c;
     console.log('winner: ' + winner + 'loser: ' + loser);
-    const res = await fetch('http://localhost:4000/api/matches', {
+    const res = await fetch('https://hamsterdb.onrender.com/api/matches', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ winnerId: winner, loserId: loser }),
