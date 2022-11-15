@@ -14,7 +14,7 @@ const history = () => {
   const dispatch = useDispatch();
 
   const getMatchInfo = async () => {
-    const res = await fetch('http://localhost:4000/api/matches');
+    const res = await fetch('https://hamsterdb.onrender.com/api/matches');
     const data = await res.json();
     dispatch(setMatches(data));
   };
