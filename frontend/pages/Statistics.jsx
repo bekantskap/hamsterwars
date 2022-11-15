@@ -13,15 +13,8 @@ const statistics = () => {
   const dispatch = useDispatch();
   console.log(matchState);
 
-  // const getMatchInfo = async () => {
-  //   const res = await fetch('http://localhost:4000/api/matches');
-  //   const data = await res.json();
-  //   dispatch(setMatches(data));
-  //   updateHamsterInfo();
-  // };
-
   const getHighScores = async () => {
-    const res = await fetch('http://localhost:4000/api/winners');
+    const res = await fetch('https://hamsterdb.onrender.com/api/winners');
     const data = await res.json();
     const arr = [];
     data.map(m => {
@@ -36,7 +29,7 @@ const statistics = () => {
   };
 
   const getLowScores = async () => {
-    const res = await fetch('http://localhost:4000/api/losers');
+    const res = await fetch('https://hamsterdb.onrender.com/api/losers');
     const data = await res.json();
     const arr = [];
     console.log(data);
