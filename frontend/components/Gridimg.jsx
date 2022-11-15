@@ -23,14 +23,14 @@ const Gridimg = props => {
   const removeHandler = async c => {
     dispatch(deleteHamster(c));
     console.log(c);
-    const res = await fetch(`http://localhost:4000/api/hamsters/${c.id}`, {
+    const res = await fetch(`https://hamsterdb.onrender.com/api/hamsters/${c.id}`, {
       method: 'DELETE',
     });
     console.log(res);
   };
 
   const getWonMatches = async id => {
-    const res = await fetch(`http://localhost:4000/api/defeated/${id}`);
+    const res = await fetch(`https://hamsterdb.onrender.com/api/defeated/${id}`);
     const data = await res.json();
     setWonMatches(data);
   };
