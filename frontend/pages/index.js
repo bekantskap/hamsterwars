@@ -10,7 +10,7 @@ export default function Home() {
   }, []);
 
   const fetchJson = async () => {
-    const data = await fetch('http://localhost:4000/api/hamstersjson');
+    const data = await fetch('https://hamsterdb.onrender.com/api/hamstersjson');
     console.log(data);
   };
   return (
