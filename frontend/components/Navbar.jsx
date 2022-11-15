@@ -21,14 +21,14 @@ const Navbar = () => {
   }, []);
 
   const fetchHamsters = async () => {
-    const res = await fetch('http://localhost:4000/api/hamsters');
+    const res = await fetch('https://hamsterdb.onrender.com/api/hamsters');
     const data = await res.json();
     dispatch(setHamster(data));
     getMatchInfo();
   };
 
   const getMatchInfo = async () => {
-    const res = await fetch('http://localhost:4000/api/matches');
+    const res = await fetch('https://hamsterdb.onrender.com/api/matches');
     const data = await res.json();
     if (data) {
       dispatch(setMatches(data));
